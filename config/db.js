@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 module.exports = () => {
-  const dbUrl = process.env.PORT === 'test' ? process.env.DB_TEST : process.env.DB;
+  const dbUrl = process.env.ENV_PORT === 'test' ? process.env.DB_TEST : process.env.DB;
   
   mongoose.connect(dbUrl, {useMongoClient: true});
   mongoose.Promise = global.Promise;
