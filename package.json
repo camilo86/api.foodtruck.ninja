@@ -1,0 +1,27 @@
+{
+  "name": "api.foodtruck.ninja",
+  "version": "1.0.0",
+  "description": "REST API server for foodtruck.ninja\"",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camilo86/api.foodtruck.ninja.git"
+  },
+  "keywords": [
+    "food",
+    "truck",
+    "ninja"
+  ],
+  "author": "Camilo Gonzalez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/camilo86/api.foodtruck.ninja/issues"
+  },
+  "homepage": "https://github.com/camilo86/api.foodtruck.ninja#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
