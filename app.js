@@ -1,8 +1,8 @@
 const express = require('express');
-const app = express();
+const {app, db} = require('./config')(express);
 
-app.use(express.json());
-app.get('/', (req, res) => res.json({ messsage: 'Hello Ninja' }));
+// Routers
+app.use('/v1/accounts', require('./routers/account')());
 
 app.listen(process.env.PORT, () => {
   console.log(`api.foodtruck.ninja is running in port ${process.env.PORT}`);
