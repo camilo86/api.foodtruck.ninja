@@ -17,6 +17,10 @@ accountSchema.methods.toJSON = function() {
   }
 };
 
+accountSchema.methods.isPasswordMatch = function(candidatePassword) {
+  return bcryptjs.compare(candidatePassword, this.password);
+};
+
 accountSchema.pre('save', function(next) {
   const account = this;
   bcryptjs.hash(account.password, 10, (error, hash) => {
