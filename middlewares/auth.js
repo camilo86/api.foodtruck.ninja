@@ -21,3 +21,20 @@ exports.getAuthToken = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.authRequired = (req, res, next) => {
+  try {
+    jwt.verify(req.header('X-Auth-Token'), process.env.TOKEN_SECRET, async (error, decoded) => {
+      if(error) throw error;
+      if(!decoded.id) throw new Error('Invalid token');
+
+      req.account = await Account.findById(decoded.id);
+      if(!req.account) throw new Error('Account not found');
+
+      next();
+    });
+  }
+  catch(error) {
+    next(error);
+  }
+};

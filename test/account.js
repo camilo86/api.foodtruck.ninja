@@ -31,4 +31,13 @@ describe('Accounts & Auth', () => {
     response.body.should.have.property('token');
     account.token = response.body.token;
   });
+
+  it('Should get current account', async () => {
+    const response = await chai.request(app).get('/v1/accounts/me').set('X-Auth-Token', account.token);
+    response.should.have.status(200);
+    response.body.id.should.equal(account.id);
+    response.body.firstName.should.equal(account.firstName);
+    response.body.lastName.should.equal(account.lastName);
+    response.body.email.should.equal(account.email);
+  });
 });

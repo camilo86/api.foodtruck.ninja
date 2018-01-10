@@ -13,7 +13,12 @@ module.exports = (props) => {
     }
   };
 
+  const get = (req, res) => {
+    return res.json(req.account);
+  };
+
   return {
-    create
+    create,
+    get
   }
 };
