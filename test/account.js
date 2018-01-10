@@ -7,7 +7,7 @@ chai.should();
 
 chai.use(chaiHttp);
 
-describe('Accounts', () => {
+describe('Accounts & Auth', () => {
   const account = {
     firstName: 'John',
     lastName: 'Doe',
@@ -23,5 +23,12 @@ describe('Accounts', () => {
     response.body.email.should.equal(account.email);
     response.body.should.have.property('id');
     account.id = response.body.id;
+  });
+
+  it('Should recieve jwt auth token', async () => {
+    const response = await chai.request(app).post('/v1/auth').send(account);
+    response.should.have.status(200);
+    response.body.should.have.property('token');
+    account.token = response.body.token;
   });
 });

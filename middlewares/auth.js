@@ -16,8 +16,6 @@ exports.getAuthToken = async (req, res, next) => {
 
       return res.json({token});
     });
-
-    return res.json({token});
   }
   catch(error) {
     next(error);
