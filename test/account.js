@@ -40,4 +40,12 @@ describe('Accounts & Auth', () => {
     response.body.lastName.should.equal(account.lastName);
     response.body.email.should.equal(account.email);
   });
+
+  it('Should update current account', async () => {
+    const response = await chai.request(app).put('/v1/accounts/me').set('X-Auth-Token', account.token).send({
+      firstName: 'Camilo',
+      lastName: 'Gonzalez'
+    });
+    response.should.have.status(204);
+  });
 });

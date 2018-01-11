@@ -17,8 +17,29 @@ module.exports = (props) => {
     return res.json(req.account);
   };
 
+  const update = async (req, res, next) => {
+    try {
+      const {firstName, lastName, email} = req.body;
+
+      req.account.firstName = firstName || req.account.firstName;
+      req.account.lastName = lastName || req.account.lastName;
+      req.account.email = email || req.account.email;
+
+      const isEmailUsed = await Account.findOne({email});
+      if(isEmailUsed) throw new Error('Email already in used');
+
+      await req.account.save();
+
+      return res.sendStatus(204);
+    }
+    catch(error) {
+      return next(error);
+    }
+  };
+
   return {
     create,
-    get
+    get,
+    update
   }
 };
